@@ -7,8 +7,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>Hello world with diiakhongchuidit</h1>
-        <img src={money} className="Moneyo" alt="" style={{ height: '300px' }} />
+        <h3 style={{ color: 'red' }}>Hello world with diiakhongchuidit</h3>
+
+        <img src={money} className="Moneyo" alt="" style={{ height: '300px' }} border={'10px solid red'} border-radius={'5000px'} padding={'100px'} />
 
         <a
           className="App-link"
