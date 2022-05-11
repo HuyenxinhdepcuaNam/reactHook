@@ -6,6 +6,10 @@ import Nav from './views/Nav';
 function App() {
   let link = 'https://zingnews.vn/'
 
+  const handleEventClick = (event) => {
+    console.log('Click me', event.target.value)
+  }
+
   return (
     <div className="App">
       <Nav />
@@ -13,16 +17,13 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <h3 style={{ color: 'red' }}>Hello world with diiakhongchuidit</h3>
 
-        <img src={money} className="Moneyo" alt="" style={{ height: '300px' }} border={'10px solid yellow'} borderRadius={'100px'} />
+        <img src={money} className="Moneyo" alt="" style={{ height: '300px' }} border={'10px solid yellow'} />
+        <input type={'text'} value='sadfsd' />
+        <button
+          type='button'
+          onClick={(event) => handleEventClick(event)}
 
-        <a
-          className="App-link"
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Bao Zing
-        </a>
+        >Click me</button>
       </header>
     </div>
   );
