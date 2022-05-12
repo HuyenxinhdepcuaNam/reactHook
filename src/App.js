@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import money from './money.jpg'
+import Covid from './views/Covid'
 import Nav from './views/Nav';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import Todo from './views/Todo'
@@ -17,9 +17,13 @@ function App() {
 
   ])
 
+  useEffect(() => {
+
+  }, [])
+
   const handleEventClick = (event) => {
     if (!address) {
-      toast.error("unKnow!")
+      toast.error("unKnown!")
       return
     }
     let newTodo = { id: Math.floor(Math.random() * 1000), title: address, type: 'eric' }
@@ -47,7 +51,9 @@ function App() {
         <Nav />
         <img src={logo} className="App-logo" alt="logo" />
         <h3 style={{ color: 'red' }}>Hello world with {name}</h3>
-        <Todo
+        <Covid />
+
+        {/* <Todo
 
           title={'All todos'}
           todos={todos}
@@ -67,7 +73,8 @@ function App() {
           type='button'
           onClick={(event) => handleEventClick(event)}
 
-        >Click me</button>
+        >Click me</button> */}
+
       </header>
       <ToastContainer
         position="top-right"
