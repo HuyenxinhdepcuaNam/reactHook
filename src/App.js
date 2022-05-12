@@ -12,7 +12,7 @@ function App() {
   const [address, setAddress] = useState('')
   const [todos, setTodos] = useState([
     { id: 'todo1', title: 'Learning React hook', type: 'eric' },
-    { id: 'todo3', title: 'Doing React hook', type: 'eric' },
+    { id: 'todo2', title: 'Doing React hook', type: 'eric' },
     { id: 'todo3', title: 'Reading React hook', type: 'abc' },
 
   ])
@@ -26,6 +26,12 @@ function App() {
     setTodos([...todos, newTodo])
     setAddress('')
     toast.success("Succeeded!")
+  }
+
+  const deleteDataTodo = (id) => {
+    let currentTodo = todos
+    currentTodo = currentTodo.filter(item => item.id !== id)
+    setTodos(currentTodo)
   }
 
 
@@ -42,11 +48,18 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <h3 style={{ color: 'red' }}>Hello world with {name}</h3>
         <Todo
+
           title={'All todos'}
-          todos={todos} />
+          todos={todos}
+          deleteDataTodo={deleteDataTodo}
+        />
         <Todo
+
+
           title={'Eric todos'}
-          todos={todos.filter(item => item.type === 'eric')} />
+          todos={todos.filter(item => item.type === 'eric')}
+          deleteDataTodo={deleteDataTodo}
+        />
 
         <img src={money} className="Moneyo" alt="" style={{ height: '300px' }} border={'10px solid yellow'} />
         <input type={'text'} value={address} onChange={(event) => handleOnchangeInput(event)} />

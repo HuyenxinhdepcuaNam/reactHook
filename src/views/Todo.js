@@ -1,23 +1,30 @@
 const Todo = (props) => {
-    const todos = props.todos
+    // const todos = props.todos
+    const { todos, title, deleteDataTodo } = props
+    const handleDelete = (id) => {
+        deleteDataTodo(id)
+    }
+
     return (
 
         <div className='todos-container'>
             <div className="title">
-                {props.title}
+                {title}
             </div>
             {todos.map(todo => {
                 return (
+                    <div key={todo.id}>
 
-                    <li className='todo-child' key={todo.id}>
-                        {todo.id} - {todo.title}
-                    </li>
-
+                        <li className='todo-child' >
+                            {todo.id} - {todo.title}
+                            &nbsp; <span onClick={() => handleDelete(todo.id)}>x</span>
+                        </li>
+                    </div>
 
                 )
             })}
             <hr></hr>
-        </div>
+        </div >
     )
 }
 export default Todo
