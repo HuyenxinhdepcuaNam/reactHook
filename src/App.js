@@ -11,18 +11,18 @@ function App() {
   let [name, setName] = useState('diiakhongchuidit')
   const [address, setAddress] = useState('')
   const [todos, setTodos] = useState([
-    { id: 'todo1', title: 'Learning React hook' },
-    { id: 'todo3', title: 'Doing React hook' },
-    { id: 'todo3', title: 'Reading React hook' },
+    { id: 'todo1', title: 'Learning React hook', type: 'eric' },
+    { id: 'todo3', title: 'Doing React hook', type: 'eric' },
+    { id: 'todo3', title: 'Reading React hook', type: 'abc' },
 
   ])
 
   const handleEventClick = (event) => {
     if (!address) {
-      alert('Needed info')
+      toast.error("unKnow!")
       return
     }
-    let newTodo = { id: Math.floor(Math.random() * 1000), title: address }
+    let newTodo = { id: Math.floor(Math.random() * 1000), title: address, type: 'eric' }
     setTodos([...todos, newTodo])
     setAddress('')
     toast.success("Succeeded!")
@@ -36,11 +36,17 @@ function App() {
   }
   return (
     <div className="App">
-      <Nav />
+
       <header className="App-header">
+        <Nav />
         <img src={logo} className="App-logo" alt="logo" />
         <h3 style={{ color: 'red' }}>Hello world with {name}</h3>
-        <Todo todos={todos} />
+        <Todo
+          title={'All todos'}
+          todos={todos} />
+        <Todo
+          title={'Eric todos'}
+          todos={todos.filter(item => item.type === 'eric')} />
 
         <img src={money} className="Moneyo" alt="" style={{ height: '300px' }} border={'10px solid yellow'} />
         <input type={'text'} value={address} onChange={(event) => handleOnchangeInput(event)} />
