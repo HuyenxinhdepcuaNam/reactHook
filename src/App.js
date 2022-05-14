@@ -6,6 +6,13 @@ import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import Todo from './views/Todo'
+import { CountDown, NewCountDown } from './views/Countdown';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Link, NavLink
+} from "react-router-dom";
 
 function App() {
   let [name, setName] = useState('diiakhongchuidit')
@@ -44,52 +51,59 @@ function App() {
 
 
   }
+  const onTimeUp = () => {
+    alert('Time out')
+  }
+
   return (
-    <div className="App">
+    <BrowserRouter>
+      <div className="App">
 
-      <header className="App-header">
-        <Nav />
-        <img src={logo} className="App-logo" alt="logo" />
-        <h3 style={{ color: 'red' }}>Hello world with {name}</h3>
-        <Covid />
+        <header className="App-header">
+          <Nav />
+          <img src={logo} className="App-logo" alt="logo" />
 
-        {/* <Todo
+          <Switch>
+            <Route path="/home">
+              <Covid />
+            </Route>
+            <Route path="/todo"  >
+              <Todo
+                todos={todos}
+                title={'All todos'}
+                deleteDataTodo={deleteDataTodo}
+              />
+              <input type="text" value={address} onChange={(event) => handleOnchangeInput(event)} />
+              <button type="button" onClick={(event) => handleEventClick(event)}>Click me</button>
+            </Route>
+            <Route path="/timer">
+              <CountDown onTimeUp={onTimeUp} />
+              <span>----------------------</span>
+              <NewCountDown onTimeUp={onTimeUp} />
+              <h3 style={{ color: 'red' }}>Hello world with {name}</h3>
+            </Route>
+            <Route path="/secret">
+              {/* <Home /> */}
+            </Route>
+          </Switch>
 
-          title={'All todos'}
-          todos={todos}
-          deleteDataTodo={deleteDataTodo}
+        </header>
+
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
         />
-        <Todo
-
-
-          title={'Eric todos'}
-          todos={todos.filter(item => item.type === 'eric')}
-          deleteDataTodo={deleteDataTodo}
-        />
-
-        <img src={money} className="Moneyo" alt="" style={{ height: '300px' }} border={'10px solid yellow'} />
-        <input type={'text'} value={address} onChange={(event) => handleOnchangeInput(event)} />
-        <button
-          type='button'
-          onClick={(event) => handleEventClick(event)}
-
-        >Click me</button> */}
-
-      </header>
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      {/* Same as */}
-      <ToastContainer />
-    </div>
+        {/* Same as */}
+        <ToastContainer />
+      </div>
+    </BrowserRouter>
   );
 }
 
